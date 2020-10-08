@@ -181,6 +181,31 @@
 35.- Tambien podemos agregar variables, en el archivo contenido.html:
      <title>{{titulo}}</title>
 
-36.- 
+36.- Y en views.py hacer los respectivos cambios:
+    def login(request):
+    return render(
+        request,
+        'login/ingreso.html'
+    )
+
+    def registro(request):
+        context = {
+            "titulo":"Registro nuevo de usuario"
+        }
+        return render(
+            request,
+            'login/registro.html',
+            context
+        )
+
+    def recuperarContrasena(request):
+        context = {
+            "titulo":"Recuperar contraseña"
+        }
+        return render(
+            request,
+            'login/contrasena.html',
+            context
+        )
 
 
