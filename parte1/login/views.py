@@ -11,7 +11,7 @@ def login(request):
 
 def registro(request):
     context = {
-        "titulo":"Registro nuevo de usuario"
+        "titulo":"Registrando el nuevo usuario"
     }
     return render(
         request,
