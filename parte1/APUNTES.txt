@@ -182,12 +182,7 @@
      <title>{{titulo}}</title>
 
 36.- Y en views.py hacer los respectivos cambios:
-    def login(request):
-    return render(
-        request,
-        'login/ingreso.html'
-    )
-
+  
     def registro(request):
         context = {
             "titulo":"Registro nuevo de usuario"
