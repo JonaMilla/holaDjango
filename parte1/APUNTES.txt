@@ -1,0 +1,186 @@
+1.- crear carpeta template
+
+2.- from os.path import join(dentro de settings)
+
+3.- dentro la funcion templates que esta en settings agregar:
+    'DIRS': [
+            join(BASE_DIR, 'templates')
+        ],
+
+4.- cambiar el idioma: 'es-cl'
+
+5.- crear carpeta static en el proyecto principal y dentro de ella irán todos aquellos archivos llamados 
+    css, js, imágenes, asset, etc.
+
+6.- en settings en la ultima linea, se debe configurar las rutas
+    STATIC_ROOT = join(BASE_DIR, 'static', 'static_root')
+
+    STATICFILES_DIRS = [join(BASE_DIR, 'static')]
+
+7.- crear una nueva aplicación python manage.py startapp login
+
+8.- agregar la aplicacion "login" a settings.py (INSTALLED_APPS)
+
+9.- crear archivo urls.py en la carpeta login (app)
+
+10.- importando Path para generar URLS
+        from django.urls import path    
+        #importando los views para vincular una funcionalidad con una URLS
+        from .views import login
+        urlpatterns = [
+        path('', login)
+        ]
+
+11.- crear funciones en views.py e importar -> from django.http import HttpResponse
+
+12.- cargar rutas del login en el proyecto principal(parte1) 
+    from django.urls import path, include
+
+13.- En la carpeta templetes se guardarán todo los archivos .html
+
+14.- ir a views.py y modificar el def
+    return render(
+        request,
+        'login/ingreso.html'
+    )
+15.- crear carpetas css y js dentro de static
+16.- agregar {% load static %} en ingreso.html y agregar link :
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+    <script src={% static "js/js.js" %}></script>
+
+17.- dentro la carpeta template creamos una carpeta llamada base y dentro de ella
+    archivos como header.html, contenido.html, footer.html
+
+18.- divido contenido en tres
+    header:<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Document</title>
+            </head>
+
+    contenido:
+            <body>
+
+    footer:</body>
+            </html>
+
+19.- En el contenido.html agregar metodos de esta manera:
+    {%include "base/header.html"%}
+    <body>
+        {%block contenido%}
+            <h1>Si ves esto algo fallo...</h1>
+        {%endblock%}
+    {%include "base/footer.html"%}
+
+20.- En la carpeta login crear un nuevo archivo llamado registro.html
+
+21.- En registro.html agregar:
+    {% extends "base/contenido.html" %}
+    
+22.- En views.py que esta en la carpeta login agregar función:
+    def registro(request):
+    return render(
+        request,
+        'login/registro.html'
+    )
+23.- En la carpeta login en el archivo urls.py crear la siguiente ruta:
+    from .views import login, registro
+
+    urlpatterns = [
+        path('', login),
+        path('registro/', registro)
+    ]
+
+24.- En la carpeta base, en el archivo header.html agrego link de materialize
+
+25.- En la carpeta login, en el archivo registro.html modifico el block de contenido.html:
+    {% extends "base/contenido.html" %}
+
+    {% block contenido%}
+        AQUÍ PUEDO AGREGAR LO QUE ESTIME CONVENIENTE
+    {% endblock %}
+
+25.- En la carpeta login, creo el archivo contrasena.html y agrego lo siguiente:
+    {% extends "base/contenido.html" %}
+
+    {% block contenido%}
+        AQUÍ PUEDO AGREGAR LO QUE ESTIME CONVENIENTE
+    {% endblock %}
+
+26.- En views.py que esta en la carpeta login agregar función:
+    def recuperarContrasena(request):
+        return render(
+            request,
+            'login/contrasena.html'
+        )
+
+27.- En la carpeta login en el archivo urls.py crear la siguiente ruta:
+    from .views import login, registro, recuperarContrasena
+
+    urlpatterns = [
+        path('', login),
+        path('registro/', registro),
+        path('recuperar-contrasena/', recuperarContrasena)
+    ]  
+
+28.- En contenido agregando lo siguiente:
+    {{ request.path }}
+    puedo imprimir por pantalla las rutas donde estoy actualmente
+    visitando.
+
+29.- MODIFICO CONTENIDO.HTML POR BUENAS PRACTICAS HACIENDO UN HTML:5
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        {%  block header%}
+            {% include "base/header.html" %}
+        {% endblock %}
+    </head>
+
+30.- En el header.html borro todo y dejo solamente los link del css u ootros links
+
+31.- Y en contenido.html en el body agrego lo siguiente:
+    {% block contenido %}
+    <h1>si ves esto algo fallo.....</h1>
+    {% endblock %}
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    {% block script %}
+
+    {% endblock %}
+
+32.- En el archivo registro.html si deseo incluir un script personalizado de debo realizar
+    lo siguiente:
+    { load static }
+
+    {% block script %}
+    {% static "js/js.js" %}
+    {% endblock %}
+
+33.-En el archivo contenido.html modifico de esta manera:
+    {% include "base/header.html" %}
+    {%  block header%}
+        
+    {% endblock %}
+
+34.-En el archivo contrasena.html agrego de esta manera:
+    {% load static %}
+    {%block header%}
+        <link rel="stylesheet" href="{% static "css/style.css" %}"> 
+    {% endblock %}
+
+    <div class="row">
+            <h1>Soy un título</h1>
+    </div>
+
+35.- Tambien podemos agregar variables, en el archivo contenido.html:
+     <title>{{titulo}}</title>
+
+36.- 
+
+
