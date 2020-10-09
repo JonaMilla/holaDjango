@@ -1,8 +1,8 @@
-1.- crear carpeta template
+1.- crear carpeta templates
 
 2.- from os.path import join(dentro de settings)
 
-3.- dentro la funcion templates que esta en settings agregar:
+3.- dentro la funcion templates que esta en settings agregar la carpeta creada:
     'DIRS': [
             join(BASE_DIR, 'templates')
         ],
@@ -36,7 +36,7 @@
 12.- cargar rutas del login en el proyecto principal(parte1) 
     from django.urls import path, include
 
-13.- En la carpeta templetes se guardarán todo los archivos .html
+13.- En la carpeta templates se guardarán todo los archivos .html
 
 14.- ir a views.py y modificar el def
     return render(
@@ -44,6 +44,7 @@
         'login/ingreso.html'
     )
 15.- crear carpetas css y js dentro de static
+
 16.- agregar {% load static %} en ingreso.html y agregar link :
     <link rel="stylesheet" href="{% static "css/style.css" %}">
     <script src={% static "js/js.js" %}></script>
